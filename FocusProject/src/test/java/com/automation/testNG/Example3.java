@@ -25,10 +25,10 @@ public class Example3 {
 	@Test
 	public void loginAndVerifyTitle() {
 		String expectedTitle = "Find a Flight: Mercury Tours:";
-		driver.get("http://newtours.demoaut.com/");
+		driver.get("http://demo.guru99.com/test/newtours/");
 		driver.findElement(By.name("userName")).sendKeys("mercury");
 		driver.findElement(By.name("password")).sendKeys("mercury");
-		driver.findElement(By.name("login")).click();
+		driver.findElement(By.name("submit")).click();
 		String actualTitle = driver.getTitle().trim();
 		AssertJUnit.assertEquals(actualTitle, expectedTitle, "Title Varification");
 	}

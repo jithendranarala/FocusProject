@@ -17,7 +17,7 @@ public class Example11 {
 	public void beforeTest() {
 		System.setProperty("webdriver.chrome.driver",ApplicationConstants.CHROME_DRIVER_PATH);
 		driver = new ChromeDriver();
-		driver.get("http://newtours.demoaut.com/");
+		driver.get("http://demo.guru99.com/test/newtours/");
 	}
 
 	@Test(groups = "Regression")

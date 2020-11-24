@@ -35,7 +35,7 @@ public class Example13 {
 		driver.get("http://newtours.demoaut.com/");
 		driver.findElement(By.name("userName")).sendKeys(userName);
 		driver.findElement(By.name("password")).sendKeys(password);
-		driver.findElement(By.name("login")).click();
+		driver.findElement(By.name("submit")).click();
 		String actualTitle = driver.getTitle().trim();
 		if (actualTitle.equals(expectedTitle)) {
 			System.out.println("Actual Title is same as Expected Title");

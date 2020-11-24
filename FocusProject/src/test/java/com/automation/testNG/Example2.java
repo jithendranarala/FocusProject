@@ -1,43 +1,44 @@
 package com.automation.testNG;
 
 import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.automation.selenium.utils.ApplicationConstants;
 
-public class Example6 {
-
+public class Example2 {
+	
 	private WebDriver driver = null;
-
-	@Test
-	public void launchBrowser() {
+	
+	@BeforeTest
+	public void beforeTest(){
 		System.setProperty("webdriver.chrome.driver", ApplicationConstants.CHROME_DRIVER_PATH);
 		driver = new ChromeDriver();
-		driver.get("http://demo.guru99.com/test/newtours/");
 	}
 
-	@Test(dependsOnMethods = "launchBrowser")
-	public void login() {
+	@Test
+	public void loginAndVerifyTitle() {
+		String expectedTitle = "Find a Flight: Mercury Tours:";
+		driver.get("http://demo.guru99.com/test/newtours/");
 		driver.findElement(By.name("userName")).sendKeys("mercury");
 		driver.findElement(By.name("password")).sendKeys("mercury");
 		driver.findElement(By.name("submit")).click();
-	}
-
-	@Test(dependsOnMethods = "login")
-	public void verifyTitle() {
-		String expectedTitle = "Find a Flight: Mercury Tours:";
 		String actualTitle = driver.getTitle().trim();
-		AssertJUnit.assertEquals(actualTitle, expectedTitle, "Title Varification");
+		if (actualTitle.equals(expectedTitle)) {
+			System.out.println("Actual Title is same as Expected Title");
+		} else {
+			System.out.println("Actual Title is not same as Expected Title");
+		}
 	}
-
-	@Test(dependsOnMethods = "verifyTitle")
-	public void closeBrowser() {
-		driver.close();
+	
+	@AfterTest
+	public void afterTest(){
+		driver.quit();
 	}
+	
 
 }
